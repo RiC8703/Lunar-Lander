@@ -12,7 +12,7 @@ def watch_random_lander(num_episodes=5):
     env = gym.make("LunarLander-v3", render_mode="human")
     
     print(f"Episodes to watch: {num_episodes}")
-    print("The lander takes RANDOM actions (no intelligence!)")
+    print("The lander takes RANDOM actions (not trained)")
     
     for episode in range(num_episodes):
         observation, info = env.reset()
