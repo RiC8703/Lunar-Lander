@@ -50,13 +50,13 @@ class DQNAgent:
         self,
         state_size = 8,
         action_size = 4,
-        lr = 1e-3,
+        lr = 5e-4,
         gamma = 0.99,
         batch_size = 64,
         buffer_capacity = 100000,
         epsilon_start = 1.0,
         epsilon_end = 0.01,
-        epsilon_decay_steps = 100000,
+        epsilon_decay_steps = 150000,
         target_update_freq = 1000,
         seed = None
     ):
@@ -160,7 +160,7 @@ class DQNAgent:
         self.steps_done = checkpoint["steps_done"]
         
 def train_dqn_agent(
-    num_episodes = 1000,
+    num_episodes = 2000,
     seed = 42,
     log_interval = 50,
     save_dir = 'results/dqn_agent'
@@ -250,7 +250,7 @@ if __name__ == "__main__":
     
     for s in seeds:
         print(f"\n=== Training with seed {s} ===")
-        m = train_dqn_agent(num_episodes=1000, seed=s)
+        m = train_dqn_agent(num_episodes=2000, seed=s)
         all_metrics.append(m)
     
     print(f"\n Summary of result across seeds:")
