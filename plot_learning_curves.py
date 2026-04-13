@@ -15,7 +15,7 @@ import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
 from pathlib import Path
 
-# ── Configuration ────────────────────────────────────────────────────────────
+# Configuration
 
 BASE_DIR   = Path(__file__).parent
 RESULTS    = BASE_DIR / "results"
@@ -31,7 +31,7 @@ PPO_SEEDS = [42, 100, 200, 300, 400]
 DQN_COLOR = "#2563EB"   # blue
 PPO_COLOR = "#DC2626"   # red
 
-# ── Helpers ──────────────────────────────────────────────────────────────────
+# Helpers
 
 def load_metrics(algo: str, seeds: list[int]) -> dict:
     """Return dict with episode_rewards and episode_lengths per seed."""
@@ -83,7 +83,7 @@ def style_axes(ax, title, xlabel="Episode", ylabel="Reward"):
     ax.grid(True, linestyle="--", alpha=0.35)
 
 
-# ── Main ─────────────────────────────────────────────────────────────────────
+# Main
 
 def main():
     dqn_data = load_metrics("dqn", DQN_SEEDS)
@@ -92,7 +92,7 @@ def main():
     dqn_ep, dqn_mean, dqn_std = align_and_stack(dqn_data)
     ppo_ep, ppo_mean, ppo_std = align_and_stack(ppo_data)
 
-    # ── 1. DQN standalone ────────────────────────────────────────────────────
+    # 1. DQN standalone
     fig, ax = plt.subplots(figsize=(9, 5))
     shade_plot(ax, dqn_ep, dqn_mean, dqn_std, DQN_COLOR,
                f"DQN mean (seeds: {DQN_SEEDS})")
@@ -103,7 +103,7 @@ def main():
     print(f"Saved: {out}")
     plt.close(fig)
 
-    # ── 2. PPO standalone ────────────────────────────────────────────────────
+    # 2. PPO standalone
     fig, ax = plt.subplots(figsize=(9, 5))
     shade_plot(ax, ppo_ep, ppo_mean, ppo_std, PPO_COLOR,
                f"PPO mean (seeds: {PPO_SEEDS})")
@@ -114,7 +114,7 @@ def main():
     print(f"Saved: {out}")
     plt.close(fig)
 
-    # ── 3. Side-by-side comparison ───────────────────────────────────────────
+    # 3. Side-by-side comparison
     fig, axes = plt.subplots(1, 2, figsize=(16, 5), sharey=True)
 
     shade_plot(axes[0], dqn_ep, dqn_mean, dqn_std, DQN_COLOR,
@@ -133,7 +133,7 @@ def main():
     print(f"Saved: {out}")
     plt.close(fig)
 
-    # ── 4. Overlaid comparison ───────────────────────────────────────────────
+    # 4. Overlaid comparison
     fig, ax = plt.subplots(figsize=(10, 6))
 
     shade_plot(ax, dqn_ep, dqn_mean, dqn_std, DQN_COLOR,
@@ -148,7 +148,7 @@ def main():
     print(f"Saved: {out}")
     plt.close(fig)
 
-    # ── 5. Individual seed traces (small multiples) ───────────────────────────
+    # 5. Individual seed traces (small multiples)
     fig = plt.figure(figsize=(16, 10))
     gs  = gridspec.GridSpec(2, max(len(DQN_SEEDS), len(PPO_SEEDS)), figure=fig,
                             hspace=0.45, wspace=0.3)

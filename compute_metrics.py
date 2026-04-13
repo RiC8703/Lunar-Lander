@@ -15,7 +15,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from pathlib import Path
 
-# ── Configuration ────────────────────────────────────────────────────────────
+# Configuration
 
 BASE_DIR   = Path(__file__).parent
 RESULTS    = BASE_DIR / "results"
@@ -29,7 +29,7 @@ NOT_CONVERGED      = -1    # sentinel: agent never reached rolling avg >= 200
 DQN_SEEDS = [42, 100, 200]
 PPO_SEEDS = [42, 100, 200, 300, 400]
 
-# ── Data loading ─────────────────────────────────────────────────────────────
+# Data loading
 
 def load_metrics(algo: str, seeds: list[int]) -> dict:
     folder = RESULTS / f"{algo}_agent"
@@ -43,7 +43,7 @@ def load_metrics(algo: str, seeds: list[int]) -> dict:
         }
     return data
 
-# ── Metric helpers ───────────────────────────────────────────────────────────
+# Metric helpers
 
 def success_rate(rewards: np.ndarray) -> float:
     """Fraction of episodes where reward exceeded the success threshold."""
@@ -67,7 +67,7 @@ def convergence_episode(rewards: np.ndarray, window: int = CONVERGENCE_WINDOW) -
 def avg_episode_length(lengths: np.ndarray) -> float:
     return float(lengths.mean())
 
-# ── Per-algo summary ─────────────────────────────────────────────────────────
+# Per-algo summary
 
 def summarise(algo: str, data: dict) -> dict:
     """Return per-seed rows and aggregate stats."""
@@ -95,7 +95,7 @@ def summarise(algo: str, data: dict) -> dict:
     }
     return {"algo": algo, "rows": rows, "agg": agg}
 
-# ── Printing ─────────────────────────────────────────────────────────────────
+# Printing
 
 def print_summary(s: dict):
     algo = s["algo"].upper()
@@ -167,7 +167,7 @@ def print_comparison(dqn: dict, ppo: dict):
     print(f"    Shorter episodes  = better fuel efficiency")
     print(f"{'═' * 62}\n")
 
-# ── Bar chart ────────────────────────────────────────────────────────────────
+# Bar chart
 
 def plot_metrics_comparison(dqn: dict, ppo: dict):
     da, pa = dqn["agg"], ppo["agg"]
@@ -221,7 +221,7 @@ def plot_metrics_comparison(dqn: dict, ppo: dict):
     print(f"Saved: {out}")
     plt.close(fig)
 
-# ── Entry point ───────────────────────────────────────────────────────────────
+# Entry point
 
 def main():
     dqn_data = load_metrics("dqn", DQN_SEEDS)
