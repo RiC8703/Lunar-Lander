@@ -3,14 +3,13 @@
 Comparative study of **DQN** and **PPO** on Gymnasium's `LunarLander-v3` environment.
 
 ## Results Summary
-|------------------------------|------------------|-----------------------------|
 | Metric                       | DQN              | PPO                         |
 |------------------------------|------------------|-----------------------------|
 | Best Avg Reward (mean ± std) | 256.24 ± 9.63    | 282.11 ± 6.92               |
 | Seeds                        | 3 (42, 100, 200) | 5 (42, 100, 200, 300, 400)  |
 | Peak Single-Seed Reward      | 269.81           | 291.28                      |
 | Training Duration            | 2,000 episodes   | 750,000 steps               |
-|------------------------------|------------------|-----------------------------|
+
 
 ---
 
@@ -93,7 +92,6 @@ Prints a comparison table (success rate, convergence speed, avg episode length) 
 ## Hyperparameters
 
 ### DQN
-|---------------------------|--------------------------------|
 | Parameter                 | Value                          |
 |---------------------------|--------------------------------|
 | Hidden layers             | 2 × 128 ReLU                   |
@@ -105,10 +103,8 @@ Prints a comparison table (success rate, convergence speed, avg episode length) 
 | Target network sync       | Every 1,000 steps              |
 | Gradient clip norm        | 1.0                            |
 | Training episodes         | 2,000                          |
-|---------------------------|--------------------------------|
 
 ### PPO
-|------------------------|--------------------------------|
 | Parameter              | Value                          |
 |------------------------|--------------------------------|
 | Hidden layers          | 2 × 128 ReLU (shared backbone) |
@@ -121,4 +117,4 @@ Prints a comparison table (success rate, convergence speed, avg episode length) 
 | Epochs per rollout     | 10                             |
 | Mini-batch size        | 64                             |
 | Total timesteps        | 750,000                        |
-|------------------------|--------------------------------|
+
