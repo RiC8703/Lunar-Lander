@@ -37,6 +37,10 @@ pip install -r requirements.txt
 ├── trained_ppo_agent.py     # Watch a trained PPO agent
 ├── plot_learning_curves.py  # Generate reward-vs-episode learning curve plots
 ├── compute_metrics.py       # Compute extended evaluation metrics
+├── files/
+│   ├── First Progress Report - Reinforcement Learning Agents for LunarLander.pdf
+│   ├── Final Progress Report - Reinforcement Learning Agents for LunarLander.pdf
+│   └── LunarLander_Final_Paper.pdf
 └── results/
     ├── dqn_agent/           # DQN model checkpoints and metrics JSON per seed
     ├── ppo_agent/           # PPO model checkpoints and metrics JSON per seed
